@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Building2, Menu, X } from 'lucide-react';
+import { Building2, Menu, X, Sun, Moon } from 'lucide-react';
 import './Navbar.css';
 
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const location = useLocation();
+    const [theme, setTheme] = useState(() => {
+        return localStorage.getItem('theme') || 'dark';
+    });
 
     useEffect(() => {
         const handleScroll = () => {
@@ -19,6 +22,15 @@ const Navbar = () => {
     useEffect(() => {
         setMobileMenuOpen(false);
     }, [location]);
+
+    useEffect(() => {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+    }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+    };
 
     return (
         <header className={`header ${scrolled ? 'scrolled' : ''}`}>
@@ -44,6 +56,9 @@ const Navbar = () => {
                     <Link to="/projects" className={`nav-link ${location.pathname.startsWith('/projects') ? 'active' : ''}`}>
                         <span className="active-indicator">&gt;</span>PROJECTS
                     </Link>
+                    <Link to="/admin" className={`nav-link ${location.pathname === '/admin' ? 'active' : ''}`}>
+                        <span className="active-indicator">&gt;</span>ADMIN
+                    </Link>
 
                     <button className="mobile-close" onClick={() => setMobileMenuOpen(false)}>
                         <X size={28} />
@@ -52,6 +67,13 @@ const Navbar = () => {
 
                 {/* Right: Actions */}
                 <div className="nav-actions">
+                    <button 
+                        onClick={toggleTheme} 
+                        className="theme-toggle-btn"
+                        aria-label="Toggle theme"
+                    >
+                        {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+                    </button>
                     <Link to="/contact" className="nav-contact-btn d-none-mobile">
                         START A PROJECT &rarr;
                     </Link>

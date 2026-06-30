@@ -55,6 +55,27 @@
     }
 
     .nav-actions {
-        display: none;
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
     }
+}
+
+.theme-toggle-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: color var(--transition-fast), background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.theme-toggle-btn:hover {
+    color: var(--accent-color);
+    background-color: var(--bg-tertiary);
+    transform: scale(1.05);
 }

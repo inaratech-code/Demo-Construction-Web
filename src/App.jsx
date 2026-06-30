@@ -8,6 +8,7 @@ import Services from './pages/Services';
 import Projects from './pages/Projects';
 import ProjectDetail from './pages/ProjectDetail';
 import Contact from './pages/Contact';
+import Admin from './pages/Admin';
 import DashboardLayout from './dashboard/DashboardLayout';
 import DashboardHome from './dashboard/DashboardHome';
 
@@ -32,6 +33,7 @@ function App() {
                                     <Route path="/projects" element={<Projects />} />
                                     <Route path="/projects/:id" element={<ProjectDetail />} />
                                     <Route path="/contact" element={<Contact />} />
+                                    <Route path="/admin" element={<Admin />} />
                                 </Routes>
                             </main>
                             <Footer />

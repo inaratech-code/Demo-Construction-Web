@@ -1,0 +1,383 @@
+/* ProjectDetail.css - Premium Image Carousel & Lightbox */
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #000;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  margin-bottom: 1.5rem;
+}
+
+/* Hover effect on the container to highlight interactivity */
+.carousel-container:hover .carousel-btn {
+  opacity: 1;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 2;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: zoom-in;
+  transition: filter var(--transition-normal);
+}
+
+.carousel-image:hover {
+  filter: brightness(1.05);
+}
+
+/* Glassmorphic Navigation Buttons */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 54px;
+  height: 54px;
+  background: rgba(5, 5, 5, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0.7;
+  transition: all var(--transition-normal);
+}
+
+.carousel-btn:hover {
+  background: var(--accent-color);
+  color: #000;
+  border-color: var(--accent-color);
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 0 20px rgba(255, 107, 0, 0.4);
+  opacity: 1;
+}
+
+.carousel-btn-prev {
+  left: 1.5rem;
+}
+
+.carousel-btn-next {
+  right: 1.5rem;
+}
+
+/* Autoplay Play/Pause Button */
+.carousel-play-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 40px;
+  height: 40px;
+  background: rgba(5, 5, 5, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  cursor: pointer;
+  z-index: 10;
+  transition: all var(--transition-fast);
+}
+
+.carousel-play-btn:hover {
+  background: var(--accent-color);
+  color: #000;
+  border-color: var(--accent-color);
+  transform: scale(1.08);
+}
+
+/* Indicators Overlay */
+.carousel-indicators {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.carousel-indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: none;
+  padding: 0;
+}
+
+.carousel-indicator-dot:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.carousel-indicator-dot.active {
+  width: 24px;
+  border-radius: 4px;
+  background: var(--accent-color);
+}
+
+/* Thumbnails Strip */
+.thumbnails-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+/* Custom scrollbar for thumbnails strip */
+.thumbnails-container::-webkit-scrollbar {
+  height: 4px;
+}
+.thumbnails-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+.thumbnails-container::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 2px;
+}
+.thumbnails-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.thumbnail-card {
+  flex: 0 0 120px;
+  height: 80px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  background: #000;
+  transition: all var(--transition-normal);
+}
+
+.thumbnail-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-normal), filter var(--transition-normal);
+  filter: brightness(0.6);
+}
+
+.thumbnail-card:hover img {
+  transform: scale(1.05);
+  filter: brightness(0.9);
+}
+
+.thumbnail-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.thumbnail-card.active {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 15px rgba(255, 107, 0, 0.3);
+}
+
+.thumbnail-card.active img {
+  filter: brightness(1);
+}
+
+/* Fullscreen Glassmorphic Lightbox Modal */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(4, 4, 4, 0.95);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lightbox-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lightbox-content {
+  position: relative;
+  width: 85vw;
+  height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+  transform: scale(0.95);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-overlay.open .lightbox-image {
+  transform: scale(1);
+}
+
+.lightbox-close-btn {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  cursor: pointer;
+  z-index: 2010;
+  transition: all var(--transition-fast);
+}
+
+.lightbox-close-btn:hover {
+  background: var(--accent-color);
+  color: #000;
+  border-color: var(--accent-color);
+  transform: scale(1.08) rotate(90deg);
+}
+
+/* Lightbox Navigation Buttons */
+.lightbox-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  cursor: pointer;
+  z-index: 2010;
+  transition: all var(--transition-normal);
+}
+
+.lightbox-btn:hover {
+  background: var(--accent-color);
+  color: #000;
+  border-color: var(--accent-color);
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 0 25px rgba(255, 107, 0, 0.4);
+}
+
+.lightbox-btn-prev {
+  left: 2rem;
+}
+
+.lightbox-btn-next {
+  right: 2rem;
+}
+
+.lightbox-caption {
+  margin-top: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.lightbox-caption span.active-num {
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+  .carousel-container {
+    height: 400px;
+  }
+  
+  .carousel-btn {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .carousel-btn-prev {
+    left: 0.75rem;
+  }
+  
+  .carousel-btn-next {
+    right: 0.75rem;
+  }
+  
+  .thumbnail-card {
+    flex: 0 0 90px;
+    height: 60px;
+  }
+
+  .lightbox-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .lightbox-btn-prev {
+    left: 0.5rem;
+  }
+
+  .lightbox-btn-next {
+    right: 0.5rem;
+  }
+
+  .lightbox-close-btn {
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-container {
+    height: 300px;
+  }
+}

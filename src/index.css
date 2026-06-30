@@ -33,6 +33,24 @@
   --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+:root[data-theme="light"] {
+  /* Modern Premium Light Theme with High Contrast Orange */
+  --bg-primary: #f5f5f7;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f0f0f2;
+
+  --accent-color: #e65c00;
+  --accent-hover: #cc5200;
+
+  --text-primary: #050505;
+  --text-secondary: #4a4a4f;
+  --text-muted: #86868b;
+
+  --border-color: #e2e2e7;
+  --glass-bg: rgba(245, 245, 247, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.08);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -46,6 +64,7 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  transition: background-color var(--transition-normal), color var(--transition-normal), border-color var(--transition-normal);
 }
 
 h1,
